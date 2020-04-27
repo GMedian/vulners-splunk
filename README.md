@@ -1,4 +1,4 @@
-#S plunk - Vulners App
+# Splunk - Vulners App
 
 Vulners Application for Splunk allows you to collect information about your system packages and their vulnerabilities
 ![](./docs/dashboard.png)

@@ -1,4 +1,4 @@
-#Splunk - Vulners App
+#S plunk - Vulners App
 
 Vulners Application for Splunk allows you to collect information about your system packages and their vulnerabilities
 ![](./docs/dashboard.png)
@@ -7,15 +7,15 @@ Vulners Application for Splunk allows you to collect information about your syst
 index=vulners | lookup vulnerslook os version package | stats list(cve) as cve values(fix) as fix by package 
 ```
 
-##Installation
+## Installation
 
-Current [Distro](./apps/vulners_src/result/vulners-lookup-0.0.1.tar.gz) contains both Dashboard and Forwarder installations
+Current [Distro](./result/vulners-lookup-0.0.1.tar.gz) contains both Dashboard and Forwarder installations
 
 #### 1. Install Dashboard App
 
  - In Splunk dashboard go to 
     
-    Apps -> Install app from file -> choose [vulners-lookup-*.tar.gz](./apps/vulners_src/result/vulners-lookup-0.0.1.tar.gz)
+    Apps -> Install app from file -> choose [vulners-lookup-*.tar.gz](./result/vulners-lookup-0.0.1.tar.gz)
 
  - Set data receiver, go to 
     Settings -> Forwarding and receiving -> Configure receiving -> New Receiving port

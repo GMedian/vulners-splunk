@@ -68,13 +68,13 @@ class Scanner(object):
         # Exit if OS is not supported in any way
         if os_name not in supported_os_lib:
             self.log.error("Can't perform scan request: Unknown OS %s. Supported os list: %s" % (os_name, supported_os_lib))
-            # return
+            return
 
         os_data = supported_os_lib.get(os_name, supported_os_lib.get('debian', None))
 
         if not hasattr(self, "%s_scan" % os_data['osType']) or not callable(getattr(self, "%s_scan" % os_data['osType'], None)):
             self.log.error("Can't scan this type of os: %s - no suitable scan method found" % os_data['osType'])
-            # return
+            return
 
         scan_result = getattr(self, "%s_scan" % os_data['osType'])(
                                                                     os_name = os_name,
@@ -85,6 +85,4 @@ class Scanner(object):
 
         if scan_result:
             print('\n'.join(scan_result))
-        else:
-            # TODO[gmedian]: Remove this stub when in production
-            print("ubuntu,16.04,libjpeg-turbo8 1.4.2-0ubuntu3 amd64")
+

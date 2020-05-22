@@ -24,7 +24,7 @@ if not os.path.exists(LOG_DIRNAME):
     os.makedirs(LOG_DIRNAME)
 LOG_FORMAT = "[%(asctime)s] %(name)s %(levelname)s: %(message)s"
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,format=LOG_FORMAT)
-loggerrrer = logging.getLogger('mylookupscript')
+loggerrrer = logging.getLogger('VulnersLookup')
 
 def log(s=""):
     loggerrrer.debug(s)
@@ -55,7 +55,8 @@ def lookup(os='ubuntu', version='16.04', packages=('libjpeg-turbo8 1.4.2-0ubuntu
                     fix.append(list(map(lambda x: x.get("fix", ""), desc)))
                 cvelist = sum(cvelist, [])
                 fix = list(set(sum(fix, [])))
-                result[pkg] = {"cve": cvelist, "fix": fix}
+                if len(cvelist) or len(fix):
+                    result[pkg] = {"cve": cvelist, "fix": fix}
             return result
         else:
             log("[vulners_lookup] Error contacting the vulners server")
